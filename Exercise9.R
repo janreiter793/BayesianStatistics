@@ -51,7 +51,7 @@ par(mfrow = c(1, 1))
 samples_beta[1:100] %>% plot(type = "l", panel.first = grid(),
                                main = "Traceplot of B")
 
-# Converges relatively quickly towards distribution, choose burning to be 5
+# Converges relatively quickly towards distribution, choose burnin to be 5
 burnin <- 5
 samples_beta[burnin:100] %>% plot(type = "l", panel.first = grid(),
                              main = "Traceplot of B (Burnin = 5)")
