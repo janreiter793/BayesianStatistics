@@ -1,4 +1,6 @@
+library(tidyverse)
 library(magrittr)
+library(dplyr)
 set.seed(100)
 
 # Params
