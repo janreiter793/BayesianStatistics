@@ -80,9 +80,6 @@ samples_lambda[,10] %>% acf(main = "Lambda_10"); grid()
 #We use the samples of lambda to draw from Y
 posterior_predictive<-rpois(100000, lambda=samples_lambda%*%diag(t))
 
-#here we find the mean of beta
-mean(samples_beta)
-
 par(mfrow=c(5,2))
 for (i in 1:10){
 hist(samples_lambda[,i],main=paste("lambda", i),xlab="value")
