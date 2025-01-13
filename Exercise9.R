@@ -43,17 +43,17 @@ for(i in 2:n_samples) {
 par(mfrow = c(1,2))
 samples_beta %>% hist(prob = TRUE, breaks = 50,
                                main = "Histogram of B samples")
-samples_beta %>% plot(type = "l", first.panel = grid(),
+samples_beta %>% plot(type = "l", panel.first = grid(),
                                main = "Traceplot of B")
 
 # Looking at the first 100 samples of B
 par(mfrow = c(1, 1))
-samples_beta[1:100] %>% plot(type = "l", first.panel = grid(),
+samples_beta[1:100] %>% plot(type = "l", panel.first = grid(),
                                main = "Traceplot of B")
 
 # Converges relatively quickly towards distribution, choose burning to be 5
 burnin <- 5
-samples_beta[burnin:100] %>% plot(type = "l", first.panel = grid(),
+samples_beta[burnin:100] %>% plot(type = "l", panel.first = grid(),
                              main = "Traceplot of B (Burnin = 5)")
 
 # acf of samples
@@ -61,15 +61,15 @@ acf(samples_beta[burnin:100], main = "ACF of beta"); grid()
 
 # Instead of burnin we could also use thinning, where we pick every second
 # sample
-samples_beta[1:100 * 2] %>% plot(type = "l", first.panel = grid(),
+samples_beta[1:100 * 2] %>% plot(type = "l", panel.first = grid(),
                                  main = "Traceplot of B (Thinning = 2)")
 
 par(mfrow = c(1,3)) 
-samples_lambda[1:100,1]%>% plot(type = "l", first.panel = grid(),
+samples_lambda[1:100,1]%>% plot(type = "l", panel.first = grid(),
                            main = "Traceplot of lambda_1")
-samples_lambda[1:100,5]%>% plot(type = "l", first.panel = grid(),
+samples_lambda[1:100,5]%>% plot(type = "l", panel.first = grid(),
                            main = "Traceplot of lambda_5")
-samples_lambda[1:100,10]%>% plot(type = "l", first.panel = grid(),
+samples_lambda[1:100,10]%>% plot(type = "l", panel.first = grid(),
                            main = "Traceplot of lambda_10")
 
 samples_lambda[,1] %>% acf(main = "Lambda_1"); grid()
