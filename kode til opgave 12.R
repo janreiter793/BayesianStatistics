@@ -76,13 +76,12 @@ samples_lambda[,1] %>% acf(main = "Lambda_1"); grid()
 samples_lambda[,5] %>% acf(main = "Lambda_5"); grid()
 samples_lambda[,10] %>% acf(main = "Lambda_10"); grid()
 
-
+###### Exercise 11 ######
 #We use the samples of lambda to draw from Y
 posterior_predictive<-rpois(100000, lambda=samples_lambda%*%diag(t))
 
 #here we find the mean of beta
 mean(samples_beta)
-
 
 par(mfrow=c(5,2))
 for (i in 1:10){
@@ -102,7 +101,7 @@ colMeans(samples_lambda)
 
 par(mfrow=c(1,1))
 
-
+##### Exercise 12 #####
 #Here we generate the vectors for the upper and lower interval 
 vector1=y/t-1.96*sqrt(y/(t**2))
 vector2=y/t+1.96*sqrt(y/(t**2))
@@ -142,9 +141,7 @@ quantile(samples_lambda[,1],0.975)
 y_pred<-rpois(100000, lambda=samples_lambda%*%diag(t))%>% matrix(nrow=10000)
 colMeans(y_pred)
 
-
-
-
+##### Exercise 13 #####
 # Function to sample lambda
 rlambda <- function(beta) {
   temp <- numeric(10)
@@ -173,8 +170,6 @@ for(i in 2:n_samples) {
   samples_beta[i] <- rbeta(samples_lambda[i - 1]) 
   samples_lambda[i,] <- rlambda(samples_beta[i]) 
 }
-
-
 
 for (i in 1:10){
   print(quantile(samples_lambda[,i],0.025))
