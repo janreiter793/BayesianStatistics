@@ -115,7 +115,7 @@ boxplot(V1 ~ groups, col = adjustcolor("lightblue", alpha.f = 0.3),
         main = "Overlapping Box Plot of confidence intervals", 
         xlab = "lambda", ylab = "Values", 
         outline = FALSE, notch = FALSE, 
-        ylim = range(c(lower_values, upper_values)),medcol = NA
+        ylim = range(c(-1, 5)),medcol = NA
 )
 
 # Overlay the second box plot
