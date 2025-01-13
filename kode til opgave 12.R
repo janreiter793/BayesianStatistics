@@ -51,7 +51,7 @@ par(mfrow = c(1, 1))
 samples_beta[1:100] %>% plot(type = "l", first.panel = grid(),
                              main = "Traceplot of B")
 
-# Converges relatively quickly towards distribution, choose burning to be 5
+# Converges relatively quickly towards distribution, choose burnin to be 5
 burnin <- 5
 samples_beta[burnin:100] %>% plot(type = "l", first.panel = grid(),
                                   main = "Traceplot of B (Burnin = 5)")
@@ -92,8 +92,6 @@ abline(v=quantile(samples_lambda[,i],0.025),lty="dotted")
 dim(apply(samples_lambda[],2,quantile,probs=c(0.025,0.975)))
 sampleconf=apply(samples_lambda[],2,quantile,probs=c(0.025,0.975))
 
-
-
 colMeans(samples_lambda)
 
 par(mfrow=c(1,1))
@@ -104,7 +102,6 @@ vector1=y/t-1.96*sqrt(y/(t**2))
 vector2=y/t+1.96*sqrt(y/(t**2))
 vector3= sampleconf[1,]
 vector4=sampleconf[2,]
-
 
 V1 <- c(vector1, vector2)  # 
 V2 <- c(vector3, vector4)  # 
@@ -124,15 +121,10 @@ boxplot(V2 ~ groups, col = adjustcolor("lightgreen", alpha.f = 0.3),
 legend("topleft", legend=c("Confidence interval", "CPI"),
        fill=c("lightblue", "lightgreen"),)
 
-
-
-
 for (i in 1:10){
   print(quantile(samples_lambda[,i],0.025))
   print(quantile(samples_lambda[,i],0.975))
 }
-
-quantile(samples_lambda[,1],0.975)
 
 #here we find the posterior predictive
 y_pred<-rpois(100000, lambda=samples_lambda%*%diag(t))%>% matrix(nrow=10000)
@@ -150,11 +142,12 @@ rlambda <- function(beta) {
   return(temp)
 }
 
-# Function to sample beta
+# Function to sample beta with rate parameter = 60
 rbeta <- function(lambda) {
   rgamma(1, 
          shape = 11,
-         rate = sum(lambda) + 60) 
+         rate = sum(lambda) + 60)
+         #rate = sum(lambda) + 20)
 }
 
 # The Gibbs sampler
